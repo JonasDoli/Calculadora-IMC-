@@ -1,5 +1,6 @@
 package com.example.meusnumerosdasorte
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,10 +20,9 @@ class MainActivity : AppCompatActivity() {
 
 
     fun Clik(view: View) {
-        val peso = findViewById<EditText>(R.id.editTextNumber)
-        val altura = findViewById<EditText>(R.id.editTextNumber2)
-        val res = findViewById<TextView>(R.id.textView)
-        val msgg = findViewById<TextView>(R.id.textView3)
+        val y = etPeso.text.toString().toFloat()
+        val x = etAltura.text.toString().toFloat()
+        val msgg = tvMensagem
         val builder = AlertDialog.Builder(this)
 
         // Mensagem de advertencia campos em branco
@@ -30,44 +31,45 @@ class MainActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
             builder.setTitle("ATENÇÃO")
+
             builder.setMessage("Voçê tem que preencher os campos")
-            builder.show()
+            builder.apply {
+                builder.show()
+            }
+
+
         }
         when {
 
-            peso.text.isEmpty() -> {
+            etPeso.text.isEmpty() -> {
                 msg()
             }
-            altura.text.isEmpty() -> {
+            etAltura.text.isEmpty() -> {
                 msg()
             }
             else -> {
-                val y = peso.text.toString().toFloat()
-                val x = altura.text.toString().toFloat()
-                val pr = 18.6 <=24.9
 
-                val soma =  y /(x * x)
-                res.text = "Seu IMC é:${"%.2f".format(soma)}"
-                if(soma <= 18.5 ) { msgg.text = "Abaixo do Peso Ideal"}
-                if(soma >=18.6 && soma <= 24.9 ){
+
+                val soma = y / (x * x)
+                tvResultado.text = "Seu IMC é:${"%.2f".format(soma)}"
+                if (soma <= 18.5) {
+                    msgg.text = "Abaixo do Peso Ideal"
+                }
+                if (soma >= 18.6 && soma <= 24.9) {
                     msgg.text = "Peso Ideal Parabèns"
                 }
-                if(soma >=25.0 && soma <= 29.9 ){
+                if (soma >= 25.0 && soma <= 29.9) {
                     msgg.text = "Levemente Acima do Peso"
                 }
-                if(soma >=30.0 && soma <= 34.9 ){
+                if (soma >= 30.0 && soma <= 34.9) {
                     msgg.text = "Obesidade Grau I"
                 }
-                if(soma >=35.0 && soma <= 39.9 ){
+                if (soma >= 35.0 && soma <= 39.9) {
                     msgg.text = "Obesidade Grau II (Severa)"
                 }
-                if(soma >=40){
+                if (soma >= 40) {
                     msgg.text = "Obesidade Grau III (Mórbida)"
                 }
-
-
-
-
 
 
             }

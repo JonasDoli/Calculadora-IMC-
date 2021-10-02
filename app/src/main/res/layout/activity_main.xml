@@ -21,7 +21,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btCalcular"
         android:layout_width="202dp"
         android:layout_height="54dp"
         android:background="@drawable/botao_perdonalizado"
@@ -47,7 +47,7 @@
         app:srcCompat="@drawable/plano_de_fundo_02" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvResultado"
 
         android:layout_width="187dp"
         android:layout_height="48dp"
@@ -64,7 +64,7 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etPeso"
         android:layout_width="263dp"
         android:layout_height="59dp"
         android:layout_marginTop="100dp"
@@ -81,7 +81,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView" />
 
     <EditText
-        android:id="@+id/editTextNumber2"
+        android:id="@+id/etAltura"
         android:layout_width="265dp"
         android:layout_height="53dp"
         android:layout_marginTop="32dp"
@@ -100,7 +100,7 @@
         app:layout_constraintVertical_bias="0.050000012" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvImc"
         android:layout_width="113dp"
         android:layout_height="71dp"
         android:gravity="center"
@@ -116,15 +116,17 @@
         app:layout_constraintVertical_bias="0.95" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvMensagem"
+
+        android:layout_width="397dp"
+        android:layout_height="37dp"
         android:text=""
+        android:gravity="center"
         android:textColor="#00CED1"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btCalcular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvResultado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
