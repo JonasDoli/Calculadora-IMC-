@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun Clik(view: View) {
-        val y = etPeso.text.toString().toFloat()
-        val x = etAltura.text.toString().toFloat()
+
         val msgg = tvMensagem
         val builder = AlertDialog.Builder(this)
 
@@ -33,49 +32,48 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle("ATENÇÃO")
 
             builder.setMessage("Voçê tem que preencher os campos")
-            builder.apply {
-                builder.show()
-            }
+
+            builder.show()
 
 
         }
-        when {
+        if (etPeso.text.isEmpty() || etAltura.text.isEmpty()) {
+            msg()
+        } else {
 
-            etPeso.text.isEmpty() -> {
-                msg()
+
+            val y = etPeso.text.toString().toFloat()
+            val x = etAltura.text.toString().toFloat()
+            val soma = y / (x * x)
+            tvResultado.text = "Seu IMC é:${"%.2f".format(soma)}"
+
+
+
+            if (soma <= 18.5) {
+                msgg.text = "Abaixo do Peso Ideal"
             }
-            etAltura.text.isEmpty() -> {
-                msg()
+            if (soma >= 18.6 && soma <= 24.9) {
+                msgg.text = "Peso Ideal Parabèns"
             }
-            else -> {
-
-
-                val soma = y / (x * x)
-                tvResultado.text = "Seu IMC é:${"%.2f".format(soma)}"
-                if (soma <= 18.5) {
-                    msgg.text = "Abaixo do Peso Ideal"
-                }
-                if (soma >= 18.6 && soma <= 24.9) {
-                    msgg.text = "Peso Ideal Parabèns"
-                }
-                if (soma >= 25.0 && soma <= 29.9) {
-                    msgg.text = "Levemente Acima do Peso"
-                }
-                if (soma >= 30.0 && soma <= 34.9) {
-                    msgg.text = "Obesidade Grau I"
-                }
-                if (soma >= 35.0 && soma <= 39.9) {
-                    msgg.text = "Obesidade Grau II (Severa)"
-                }
-                if (soma >= 40) {
-                    msgg.text = "Obesidade Grau III (Mórbida)"
-                }
-
-
+            if (soma >= 25.0 && soma <= 29.9) {
+                msgg.text = "Levemente Acima do Peso"
             }
+            if (soma >= 30.0 && soma <= 34.9) {
+                msgg.text = "Obesidade Grau I"
+            }
+            if (soma >= 35.0 && soma <= 39.9) {
+                msgg.text = "Obesidade Grau II (Severa)"
+            }
+            if (soma >= 40) {
+                msgg.text = "Obesidade Grau III (Mórbida)"
+            }
+
+
         }
     }
 }
+
+
 
 
 
